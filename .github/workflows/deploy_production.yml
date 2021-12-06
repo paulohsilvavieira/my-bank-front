@@ -30,10 +30,15 @@ jobs:
           name: 'config.json'
           json: ${{ secrets.CONFIG_FRONT_APP }}
           dir: './public'
+
+      - name: Set Project Firebase
+        run: firebase use ${{secrets.FIREBASE_PROJECT_ID}} --token ${{ secrets.FIREBASE_TOKEN }}
+    
       - name: Clear Target
         run: firebase target:clear hosting app
+
       - name: Set Target Deploy
-        run: firebase target:apply hosting app ${{secrets.FRONT_APP}} ${{secrets.FIREBASE_PROJECT_ID}} --token ${{ secrets.FIREBASE_TOKEN }}
+        run: firebase target:apply hosting app ${{secrets.FRONT_APP}}  --token ${{ secrets.FIREBASE_TOKEN }}
 
       - name: Deploy Hosting
         run: firebase deploy --only hosting --token ${{ secrets.FIREBASE_TOKEN }}
