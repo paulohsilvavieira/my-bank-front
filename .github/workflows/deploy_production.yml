@@ -1,4 +1,4 @@
-name: Deploy Firebase Staging
+name: Deploy Front App Production
 
 on:
   push:
